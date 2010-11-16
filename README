@@ -1,0 +1,27 @@
+python-ctypescracklib
+Written by Sean Reifschneider <jafo@tummy.com>
+Placed in the public domain.
+No rights reserved.
+
+Cracklib is great, and in newer packages there is a Python module available
+for it. However, on systems that don't yet have it, such as CentOS 5, I've
+written a ctypes wrapper for the system cryptlib. This would also work on a
+system that you can't install python-libcrypt. It does require python with
+ctypes available, so for CentOS 5 you have to install and use the python26
+package.
+
+It also has the advantage that it can take the username and check for
+passwords that contain it or are substantially similar, like the libcrypt
+"FascistGecos" function but without requiring the user to exist in
+/etc/passwd.
+
+Some example uses:
+
+   >>> FascistCheck('jafo1234', 'jafo')
+   'it is based on your username'
+   >>> FascistCheck('myofaj123', 'jafo')
+   'it is based on your username'
+   >>> FascistCheck('jxayfoxo', 'jafo')
+   'it is too similar to your username'
+   >>> FascistCheck('cretse')
+   'it is based on a dictionary word'
