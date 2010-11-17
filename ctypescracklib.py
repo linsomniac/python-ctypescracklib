@@ -29,7 +29,8 @@ def FascistCheck(passwd, username = None):
 		for c in passwd.lower(): passwdchars[c] = 1
 		passwdchars = ''.join([ x for x in passwdchars.keys()
 				if x not in usernamechars ])
-		if len(passwdchars) < len(usernamechars):
+		if ((len(usernamechars) < 5 and len(passwdchars) < 4)
+				or (len(usernamechars) < 10 and len(passwdchars) < 2)):
 			return 'it is too similar to your username'
 
 	return None
